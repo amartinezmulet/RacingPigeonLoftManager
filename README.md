@@ -1,7 +1,9 @@
 # Racing Pigeon Loft Manager
-About the project
+
+## About the project
 The project is going to manage a Racing Pigeon Loft by keeping pigeon’s data records and retrieving useful information contained in those records.
-Project Goals
+
+### Project Goals
 1.	Keep a record of pigeons:
 •	Born in loft 
 •	Purchased
