@@ -1,0 +1,23 @@
+﻿            *******************
+            * Menu Pseudocode *
+            * *****************
+
+            do{
+                display menu
+                get user choice
+                do something with the choice
+           } while ( user choice !=quit );
+
+            do while with switch
+
+            do{
+                display menu
+                get user choice
+                switch( user choice ){
+                        case 1: do something; break
+                        case 2: do something; break
+                        case 3: user wants to quit; break ( Quit )
+                        default: display invalid entry    ( And invalid entry has been entered )
+            } while ( user choice !=quit );
+
+           
