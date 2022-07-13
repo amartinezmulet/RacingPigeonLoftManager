@@ -5,14 +5,18 @@ using System.Threading;
 
 namespace RPLM.BL
 {
-    class Program
+    partial class Program 
     {
-        static void Main()
+        static void Main(string[] args)
         {
-        
+            MainMenu();
         }
 
+
+        
+
     }
+        
 
 }
 
