@@ -100,12 +100,12 @@ namespace RPLM.BL
                     Console.WriteLine(menuHeader);
                     Console.WriteLine("├" + new string('─', menuHeader.Length - 2) + "┤");
 
-                    Console.WriteLine("│1. Find a Pigeon   5. Born in Loft      11. In Loft          │");
-                    Console.WriteLine("│2. Add Pigeon      6. Purchased         12. By Color         │");
-                    Console.WriteLine("│3. Edit Pigeon     7. Received as Gift  13. By Strain        │");
-                    Console.WriteLine("│4. Delete Pigeon   8. Given away        14. By Sex           │");
-                    Console.WriteLine("│                   9. Lost              15. By Year          │");
-                    Console.WriteLine("│                  10. Deceased           0. Back to Main menu│");
+                    Console.WriteLine("│1. Add Pigeon      4. Born in Loft      10. In Loft          │");
+                    Console.WriteLine("│2. Delete Pigeon   5. Purchased         11. By Color         │");
+                    Console.WriteLine("│3. Find a Pigeon   6. Received as Gift  12. By Strain        │");
+                    Console.WriteLine("│                   7. Given away        13. By Sex           │");
+                    Console.WriteLine("│                   8. Lost              14. By Year          │");
+                    Console.WriteLine("│                   9. Deceased           0. Back to Main menu│");
                     Console.WriteLine("└" + new string('─', menuHeader.Length - 2) + "┘");
 
                     Console.ResetColor();
@@ -126,65 +126,61 @@ namespace RPLM.BL
                 {
                     //Pigeon record
                     case 1:
-                        Console.WriteLine("Find a Pigeon");
-                        Console.ReadLine();
-                        break;
-                    case 2:
                         Console.WriteLine("Add Pigeon");
                         Console.ReadLine();
                         break;
-                    case 3:
-                        Console.WriteLine("Edit Pigeon");
-                        Console.ReadLine();
-                        break;
-                    case 4:
+                    case 2:
                         Console.WriteLine("Delete Pigeon");
                         Console.ReadLine();
                         break;
-
+                    case 3:
+                        Console.WriteLine("Find a Pigeon");
+                        Console.ReadLine();
+                        break;
+                    
                     //Display Pigeons
-                    case 5:
+                    case 4:
                         Console.WriteLine("Born in Loft");
                         Console.ReadLine();
                         break;
-                    case 6:
+                    case 5:
                         Console.WriteLine("Purchased");
                         Console.ReadLine();
                         break;
-                    case 7:
+                    case 6:
                         Console.WriteLine("Received as Gift");
                         Console.ReadLine();
                         break;
-                    case 8:
+                    case 7:
                         Console.WriteLine("Given away");
                         Console.ReadLine();
                         break;
-                    case 9:
+                    case 8:
                         Console.WriteLine("Lost");
                         Console.ReadLine();
                         break;
-                    case 10:
+                    case 9:
                         Console.WriteLine("Deceased");
                         Console.ReadLine();
                         break;
                     //List of all Pigeons
-                    case 11:
+                    case 10:
                         Console.WriteLine("In Loft");
                         Console.ReadLine();
                         break;
-                    case 12:
+                    case 11:
                         Console.WriteLine("By Color");
                         Console.ReadLine();
                         break;
-                    case 13:
+                    case 12:
                         Console.WriteLine("By Strain");
                         Console.ReadLine();
                         break;
-                    case 14:
+                    case 13:
                         Console.WriteLine("By Sex");
                         Console.ReadLine();
                         break;
-                    case 15:
+                    case 14:
                         Console.WriteLine("By Year");
                         Console.ReadLine();
                         break;
