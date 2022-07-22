@@ -12,7 +12,7 @@ namespace RPLM.BL.Helpers
 
         public static void AddPigeon(Pigeon pigeon)
         {
-            Pigeons.Add(pigeon.BandIdNumber, pigeon);
+            Pigeons.Add(pigeon.BandId, pigeon);
         }
 
         public static void EditPigeon(string bandIdNumber, Pigeon pigeon)
