@@ -15,6 +15,14 @@ namespace RPLM.BL
     public class Pigeon:BandInformation
     {
         /// <summary>
+        /// Gets the band identifier.
+        /// </summary>
+        /// <value>
+        /// Band numbers are in a series of letters & numbers. Ex AU2022LOU1234
+        /// </value>
+        public string BandId => string.Join("", BandOrganization, BandYear, BandClubCode, BandSerialNumber);
+
+        /// <summary>
         /// Gets or sets the pigeon's color identifier.
         /// </summary>
         /// <value>

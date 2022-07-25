@@ -36,12 +36,5 @@ namespace RPLM.BL.Models
         /// A one-up number unique to each pigeon based on the club letters. Ex. 1234
         /// </value>
         public string BandSerialNumber { get; set; }
-        /// <summary>
-        /// Gets the band identifier.
-        /// </summary>
-        /// <value>
-        /// Band numbers are in a series of letters & numbers. Ex AU2022LOU1234
-        /// </value>
-        public string BandId => string.Join("", BandOrganization, BandYear, BandClubCode, BandSerialNumber);
     }
 }
