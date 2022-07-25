@@ -33,8 +33,6 @@ namespace RPLM.BL.Helpers
             return null;
         }
 
-
-
         public static void Save()
         {
             //TODO Save to Jason File

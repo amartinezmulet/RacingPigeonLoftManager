@@ -12,7 +12,10 @@ namespace RPLM.BL
         static void MainMenu()
         {
             CleanUp();
+            Console.SetWindowSize(120, 45);
+
             bool exitApplication = false;
+
             while (!exitApplication)
             {
                 int userChoice;

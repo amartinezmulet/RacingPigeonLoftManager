@@ -9,6 +9,9 @@ namespace RPLM.BL
     {
         static void Main(string[] args)
         {
+            Console.Clear();
+            Console.ResetColor();
+            
             MainMenu();
         }
 

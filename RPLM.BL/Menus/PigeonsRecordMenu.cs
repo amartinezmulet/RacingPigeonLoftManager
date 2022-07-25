@@ -57,8 +57,32 @@ namespace RPLM.BL
                     //Pigeon record
                     case 1:
                         CleanUp();
-                        var addPigeon = new PigeonDataInput();
-                        addPigeon.GetBandIdFromConsoleInput(1, 1, ConsoleColor.White, ConsoleColor.Blue);
+                        var pigeon = new PigeonDataInput();
+                        CleanUp();
+                        Console.WriteLine($"The Band Id id {pigeon.BandId}");
+                        
+                        Console.WriteLine($"The pigeon's color is {pigeon.Color}");
+                        
+                        Console.WriteLine($"The pigeon's sex is {pigeon.Sex}");
+
+                        var text = (pigeon.HatchDate == null) ? "Unknown" : pigeon.HatchDate.ToString();
+
+                        Console.WriteLine($"The pigeon's hatch date es is {text}");
+
+                        Console.WriteLine($"The pigeon's origin is {pigeon.Origin}");
+
+                        Console.WriteLine($"The pigeon's strain is {pigeon.Strain}");
+
+                        Console.WriteLine($"The pigeon's status is {pigeon.Status}");
+                        
+                        Console.WriteLine($"The Sire Band Id is {pigeon.SireBandId}");
+                        Console.WriteLine($"The Dam Band Id is {pigeon.DamBandId}");
+
+
+                        Console.ReadLine();
+                        
+
+                        
 
                         break;
                     case 2:
