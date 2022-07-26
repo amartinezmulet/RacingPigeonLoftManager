@@ -9,18 +9,18 @@ namespace RPLM.BL.DrawingTools
     /// <summary>
     /// Contains properties with ascii graphic characters
     /// </summary>
-    public class BoxDrawingCharacters
+    public static class BoxDrawingCharacters
     {
-        public char LeftTopCorner => '┌';
-        public char RighTopCorner => '┐';
-        public char LeftBottomCorner => '└';
-        public char RightBottomCorner => '┘';
-        public char HorizontalLine => '─';
-        public char VerticalLine => '│';
-        public char DividerTop => '┬';
-        public char DividerCenter => '┼';
-        public char DividerBotton => '┬';
-        public char DividerLeftToRight => '├';
-        public char DividerRightToLeft => '┤';
+        public static char LeftTopCorner => '┌';
+        public static char RighTopCorner => '┐';
+        public static char LeftBottomCorner => '└';
+        public static char RightBottomCorner => '┘';
+        public static char HorizontalLine => '─';
+        public static char VerticalLine => '│';
+        public static char DividerTop => '┬';
+        public static char DividerCenter => '┼';
+        public static char DividerBotton => '┬';
+        public static char DividerLeftToRight => '├';
+        public static char  DividerRightToLeft => '┤';
     }
 }

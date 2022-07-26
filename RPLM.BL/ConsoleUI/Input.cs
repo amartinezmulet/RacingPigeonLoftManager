@@ -10,7 +10,7 @@ using RPLM.BL.Models;
 
 namespace RPLM.BL.ConsoleUI
 {
-    public class PigeonDataInput
+    public class Input
     {
         private Pigeon pigeon;
         //Variables from band information
@@ -28,46 +28,46 @@ namespace RPLM.BL.ConsoleUI
         private string pigeonSireId;
         private string pigeonDamId;
 
-        public PigeonDataInput()
+        public Input()
         {
             pigeon = new Pigeon();
         }
 
-        public Pigeon GetPigeonDataInput()
+        public Pigeon PigeonData()
         {
             
-            GetBandInformation();
+            BandInformation();
             pigeon.BandOrganization = bandOrganization;
             pigeon.BandYear = bandYear;
             pigeon.BandClubCode = bandClubCode;
             pigeon.BandSerialNumber = bandSerialNumber;
 
-            GetPigeonColor();
+            PigeonColor();
             pigeon.Color = pigeonColor;
 
-            GetPigeonSex();
+            PigeonSex();
             pigeon.Sex = pigeonSex;
 
-            GetHatchDate();
+            HatchDate();
             pigeon.HatchDate = pigeonHatchDate;
 
-            GetOrigin();
+            Origin();
             pigeon.Origin = pigeonOrigen;
 
-            GetStrain();
+            Strain();
             pigeon.Strain = pigeonStrain;
 
-            GetStatus();
+            Status();
             pigeon.Status = pigeonStatus;
 
-            GetSireAndDamBandId();
+            SireAndDamBandId();
             pigeon.SireBandId = pigeonSireId;
             pigeon.DamBandId = pigeonDamId;
 
             return pigeon;
         }
 
-        private void GetBandInformation()
+        private void BandInformation()
         {
             int cursorLeft = 0;
             int cursorTop = 0;
@@ -194,7 +194,7 @@ namespace RPLM.BL.ConsoleUI
             } // Exits if correctBandInformation = true
         }
         /*********************************************************************************************************/
-        private void GetPigeonColor()
+        private void PigeonColor()
         {
             string[] colors = {
                                 "Blue bar",
@@ -262,7 +262,7 @@ namespace RPLM.BL.ConsoleUI
             } while (!correctColor);
         }
         /*****************************************************************************************************************/
-        private void GetPigeonSex()
+        private void PigeonSex()
         {
             string[] sex = {"Cock", "Hen", "Unknown" };
 
@@ -296,7 +296,7 @@ namespace RPLM.BL.ConsoleUI
         }
 
         /*****************************************************************************************************************/
-        private void GetHatchDate()
+        private void HatchDate()
         {
             int cursorLeft = 0;
             int cursorTop = 0;
@@ -347,7 +347,7 @@ namespace RPLM.BL.ConsoleUI
 
         /*****************************************************************************************************************/
 
-        private void GetOrigin()
+        private void Origin()
         {
             string[] origin = { "Ancestor", "Bred", "Gift", "Purchased" };
 
@@ -382,7 +382,7 @@ namespace RPLM.BL.ConsoleUI
 
         /****************************************************************************************************************/
 
-        private void GetStrain()
+        private void Strain()
         {
             string[] strain = { "Dijkstra", "Houben", "Janssen", "Ludo Claessens", "Meuleman", "Trenton", "Unknown" };
 
@@ -421,7 +421,7 @@ namespace RPLM.BL.ConsoleUI
 
         /****************************************************************************************************************/
 
-        private void GetStatus()
+        private void Status()
         {
             string[] status = { "Archive", "Breeding", "Dead", "Gifted", "Lost", "Racing", "Squeaker", "Standby" };
 
@@ -457,7 +457,7 @@ namespace RPLM.BL.ConsoleUI
 
         /****************************************************************************************************************/
 
-        private void GetSireAndDamBandId()
+        private void SireAndDamBandId()
         {
             int cursorLeft = 0;
             int cursorTop = 0;

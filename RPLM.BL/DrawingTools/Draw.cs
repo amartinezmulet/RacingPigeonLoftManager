@@ -6,8 +6,20 @@ using System.Threading.Tasks;
 
 namespace RPLM.BL.DrawingTools
 {
-    class Draw : BoxDrawingCharacters
+    public static class Draw
     {
+        public static char LeftTopCorner => '┌';
+        public static char RighTopCorner => '┐';
+        public static char LeftBottomCorner => '└';
+        public static char RightBottomCorner => '┘';
+        public static char HorizontalLine => '─';
+        public static char VerticalLine => '│';
+        public static char DividerTop => '┬';
+        public static char DividerCenter => '┼';
+        public static char DividerBotton => '┬';
+        public static char DividerLeftToRight => '├';
+        public static char DividerRightToLeft => '┤';
+
         /// <summary>
         /// Draw a container box using ascii graphic characters.
         /// </summary>
@@ -18,7 +30,7 @@ namespace RPLM.BL.DrawingTools
         /// <param name="title">The container's title.</param>
         /// <param name="frgrndColor">The container's foreground color.</param>
         /// <param name="bckgrndColor">The container's background color.</param>
-        public void Container(int column, int row, int width, int height, string title, ConsoleColor frgrndColor, ConsoleColor bckgrndColor)
+        public static void Container(int column, int row, int width, int height, string title, ConsoleColor bckgrndColor, ConsoleColor frgrndColor)
         {
             int times;
 
@@ -61,7 +73,7 @@ namespace RPLM.BL.DrawingTools
         /// <param name="background">The background color.</param>
         /// <param name="foreground">The foreground color.</param>
         /// <returns></returns>
-        public int ChooseListBoxItem(string[] stringArray, int uppercolumn, int upperrow, ConsoleColor background, ConsoleColor foreground)
+        public static int ChooseListBoxItem(string[] stringArray, int uppercolumn, int upperrow, ConsoleColor background, ConsoleColor foreground)
         {
             int arraySize = stringArray.Length;
             int maxLength = stringArray[0].Length;
@@ -137,7 +149,7 @@ namespace RPLM.BL.DrawingTools
         /// <param name="back">The background color.</param>
         /// <param name="fore">The foreground color.</param>
         /// <param name="fill">if set to <c>true</c> [fill a line].</param>
-        public void Box(int ucol, int urow, int lcol, int lrow, ConsoleColor back, ConsoleColor fore, bool fill)
+        public static void Box(int ucol, int urow, int lcol, int lrow, ConsoleColor back, ConsoleColor fore, bool fill)
         {
             string fillLine = fill ? new string(' ', lcol - ucol - 1) : "";
             SetColors(back, fore);
@@ -172,7 +184,7 @@ namespace RPLM.BL.DrawingTools
         /// <summary>
         /// Cleans up console and resets colors.
         /// </summary>
-        public void CleanUpConsole()
+        public static void CleanUpConsole()
         {
             Console.ResetColor();
             Console.Clear();
@@ -186,7 +198,7 @@ namespace RPLM.BL.DrawingTools
         /// <param name="row">The row.</param>
         /// <param name="background">The background.</param>
         /// <param name="foreground">The foreground.</param>
-        public void WriteColorString(string s, int col, int row, ConsoleColor background, ConsoleColor foreground)
+        public static void WriteColorString(string s, int col, int row, ConsoleColor background, ConsoleColor foreground)
         {
             SetColors(background, foreground);
             // write string
@@ -199,7 +211,7 @@ namespace RPLM.BL.DrawingTools
         /// </summary>
         /// <param name="background">The background.</param>
         /// <param name="foreground">The foreground.</param>
-        public void SetColors(ConsoleColor background, ConsoleColor foreground)
+        public static void SetColors(ConsoleColor background, ConsoleColor foreground)
         {
             Console.BackgroundColor = background;
             Console.ForegroundColor = foreground;

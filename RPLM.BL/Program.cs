@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+using RPLM.BL.ConsoleUI;
 
 namespace RPLM.BL
 {
@@ -11,14 +12,19 @@ namespace RPLM.BL
         {
             Console.Clear();
             Console.ResetColor();
+
+           MainMenu();
+
             
-            MainMenu();
+
+
         }
 
 
         
 
     }
+    
         
 
 }

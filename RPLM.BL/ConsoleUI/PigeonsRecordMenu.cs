@@ -59,8 +59,8 @@ namespace RPLM.BL
                     case 1:
                         CleanUp();
                         
-                        var pigeonDataInput = new PigeonDataInput();
-                        Pigeon newPigeon = pigeonDataInput.GetPigeonDataInput();
+                        var pigeonDataInput = new Input();
+                        Pigeon newPigeon = pigeonDataInput.PigeonData();
 
                         CleanUp();
                         Console.WriteLine($"The Band Id id {newPigeon.BandId}");
