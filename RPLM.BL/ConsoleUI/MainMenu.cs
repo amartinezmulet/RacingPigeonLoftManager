@@ -12,7 +12,7 @@ namespace RPLM.BL
     {
         static void MainMenu()
         {
-            // CARGAR INFORMACION QUE TENGO GUARDADA CON LOS REGISTROS DE PIGEONS
+            
             PigeonDataHelper.LoadData();
 
             CleanUp();
@@ -39,9 +39,8 @@ namespace RPLM.BL
                     Console.WriteLine("├" + new string('─', 18) + "┤");
 
                     Console.WriteLine("│1.Pigeons Record  │");
-                    Console.WriteLine("│2.Breeding Record │");
-                    Console.WriteLine("│3.Pedigree        │");
-                    Console.WriteLine("│4.Inventory       │");
+                    Console.WriteLine("│2.Pedigree        │");
+                    Console.WriteLine("│3.Inventory       │");
                     Console.WriteLine("│0.Exit application│\r");
                     Console.WriteLine("└" + new string('─', 18) + "┘");
 
@@ -49,7 +48,7 @@ namespace RPLM.BL
 
                     TypeWrite("Please choose one of the above options:");
 
-                    validChoice = Int32.TryParse(Console.ReadLine(), out userChoice) || userChoice < 0 || userChoice > 4;
+                    validChoice = Int32.TryParse(Console.ReadLine(), out userChoice) || userChoice < 0 || userChoice > 3;
 
                     if (!validChoice)
                     {
@@ -65,14 +64,10 @@ namespace RPLM.BL
                         PigeonsRecordMenu();
                         break;
                     case 2:
-                        Console.WriteLine("Breeding Record - Option 2 was chosen");
-                        Console.ReadLine();
-                        break;
-                    case 3:
                         Console.WriteLine("Pedigree - Option 3 was chosen");
                         Console.ReadLine();
                         break;
-                    case 4:
+                    case 3:
                         Console.WriteLine("Inventory - Option 4 was chosen");
                         Console.ReadLine();
                         break;

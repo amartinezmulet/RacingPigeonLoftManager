@@ -86,8 +86,7 @@ namespace RPLM.BL
                         Console.ReadLine(); //Would you like to save the changes Y/N
                         PigeonDataHelper.AddPigeon(newPigeon);
                         PigeonDataHelper.Save();
-
-
+                       
                         break;
                     case 2:
                         Console.WriteLine("Delete Pigeon");

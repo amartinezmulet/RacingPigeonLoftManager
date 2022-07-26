@@ -185,9 +185,9 @@ namespace RPLM.BL.ConsoleUI
                 pigeon.BandSerialNumber = bandSerialNumber;
                 bandId = string.Concat(bandOrganization, bandYear, bandClubCode, bandSerialNumber);
                 
-                Console.Write($"Does the pigeon's band you entered reads {bandId}? (Y/N) ");
+                Console.Write($"\r\nDoes the pigeon's band you entered reads {bandId} ");
 
-                correctBandInformation = InputValidator.YesOrNotChoice("Correct (Y/N):") == 'Y' ? true : false;
+                correctBandInformation = InputValidator.YesOrNotChoice("Correct (Y/N)?: ") == 'Y';
 
 
 
@@ -256,7 +256,7 @@ namespace RPLM.BL.ConsoleUI
                 pigeonColor = colors[colorChoice - 1];
 
                 Console.Write($"You chose \u0022{pigeonColor}\u0022");
-                correctColor = InputValidator.YesOrNotChoice("Correct (Y/N):") == 'Y' ? true : false;
+                correctColor = InputValidator.YesOrNotChoice("Correct (Y/N)?: ") == 'Y';
 
 
             } while (!correctColor);
@@ -289,7 +289,7 @@ namespace RPLM.BL.ConsoleUI
                 pigeonSex = sex[sexChoice - 1];
 
                 Console.Write($"You chose \u0022{pigeonSex}\u0022");
-                correctSex = InputValidator.YesOrNotChoice("Correct (Y/N):") == 'Y';
+                correctSex = InputValidator.YesOrNotChoice("Correct (Y/N)?: ") == 'Y';
 
 
             } while (!correctSex);
@@ -316,7 +316,7 @@ namespace RPLM.BL.ConsoleUI
                 Console.WriteLine("Ex. 02/07/2021");
                 Console.WriteLine("If you don't know the hatch date just press enter to leave it empty or unknown\r\n");
 
-                Console.Write("Please enter hatch date or just press enter if unknown:");
+                Console.Write("Please enter hatch date or just press enter if unknown: ");
 
                 rigthInput = false;
                 cursorLeft = Console.CursorLeft;
@@ -336,9 +336,9 @@ namespace RPLM.BL.ConsoleUI
                 DateTime date;
                 pigeonHatchDate = DateTime.TryParseExact(consoleInput, "MM/dd/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out date) ? date : null;
 
-                Console.Write($"Is the Hatch Date correct {pigeonHatchDate}? (Y/N) ");
+                Console.Write($"\r\nIs the Hatch Date {pigeonHatchDate} ");
 
-                correctHatchDate = InputValidator.YesOrNotChoice("Correct (Y/N):") == 'Y' ? true : false;
+                correctHatchDate = InputValidator.YesOrNotChoice("Correct (Y/N)?: ") == 'Y' ? true : false;
 
 
 
@@ -374,7 +374,7 @@ namespace RPLM.BL.ConsoleUI
                 pigeonOrigen = origin[originChoice - 1];
 
                 Console.Write($"You chose \u0022{pigeonOrigen}\u0022");
-                correctOrigin = InputValidator.YesOrNotChoice("Correct (Y/N):") == 'Y';
+                correctOrigin = InputValidator.YesOrNotChoice("Correct (Y/N)?: ") == 'Y';
 
 
             } while (!correctOrigin);
@@ -413,7 +413,7 @@ namespace RPLM.BL.ConsoleUI
                 pigeonStrain = strain[strainChoice - 1];
 
                 Console.Write($"You chose \u0022{pigeonStrain}\u0022");
-                correctStrain = InputValidator.YesOrNotChoice("Correct (Y/N):") == 'Y';
+                correctStrain = InputValidator.YesOrNotChoice("Correct (Y/N)?: ") == 'Y';
 
 
             } while (!correctStrain);
@@ -430,7 +430,7 @@ namespace RPLM.BL.ConsoleUI
             {
                 Console.Clear();
                 Console.WriteLine("Pigeon's Status in Loft");
-                Console.WriteLine("===============");
+                Console.WriteLine("=======================");
                 
                 Console.WriteLine("\r\nPlease use up and down arrow keys and press enter to select the \u0022Pigeon's Status\u0022");
 
@@ -449,7 +449,7 @@ namespace RPLM.BL.ConsoleUI
                 pigeonStatus = status[statusChoice - 1];
 
                 Console.Write($"You chose \u0022{pigeonStatus}\u0022");
-                correctStatus = InputValidator.YesOrNotChoice("Correct (Y/N):") == 'Y';
+                correctStatus = InputValidator.YesOrNotChoice("Correct (Y/N)?: ") == 'Y';
 
 
             } while (!correctStatus);
@@ -478,7 +478,7 @@ namespace RPLM.BL.ConsoleUI
                 Console.WriteLine("Band numbers are in a series of letters & numbers as shown below.");
                 Console.WriteLine("Ex. The band may read-->AU2018LOU3657\r\n");
                 
-                Console.Write("Please enter the pigeon's Sire band information");
+                Console.Write("Please enter the pigeon's Sire band information: ");
 
                 rigthInput = false;
                 cursorLeft = Console.CursorLeft;
@@ -496,7 +496,7 @@ namespace RPLM.BL.ConsoleUI
 
                 } while (!rigthInput);
 
-                Console.Write("Please enter the pigeon's Dam band information");
+                Console.Write("Please enter the pigeon's Dam band information: ");
 
                 rigthInput = false;
                 cursorLeft = Console.CursorLeft;
@@ -515,9 +515,9 @@ namespace RPLM.BL.ConsoleUI
                 } while (!rigthInput);
 
 
-                Console.Write($"Is the pigeon's Sire and Dam band information you entered correct? (Y/N) ");
+                Console.Write($"Is the pigeon's Sire and Dam band information you entered ");
 
-                correctSireAndDamBandInformation = InputValidator.YesOrNotChoice("Correct (Y/N):") == 'Y' ? true : false;
+                correctSireAndDamBandInformation = InputValidator.YesOrNotChoice("Correct (Y/N)?: ") == 'Y';
 
 
 

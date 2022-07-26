@@ -74,8 +74,9 @@ namespace RPLM.BL.Helpers
                     content = sr.ReadToEnd();
                 }
 
-                List<Pigeon> pigeon = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Pigeon>>(content);
-                Pigeons = pigeon.ToDictionary(it => it.BandId);
+                List<Pigeon> pigeons = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Pigeon>>(content);
+                Pigeons = pigeons.ToDictionary(it => it.BandId);
+
             }
         }
     }
