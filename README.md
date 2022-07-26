@@ -11,12 +11,9 @@ The project is going to manage a Racing Pigeon Loft by keeping pigeon’s data r
 •	Given away.
 •	Lost
 •	Dead
-2.	Keep a Breeding record of:
-•	Breeding pairs
-•	Offspring
-3.	Retrieve useful information like:
+2.	Retrieve useful information like:
 •	Data lookup about a specific pigeon
-•	Total of pigeons, cocks, hens, unsexed, breeding pairs, young and old pigeons.  
+•	Total of pigeons, cocks, hens, unsexed, breeders, young and old pigeons.  
 •	Grouping pigeons’ information by color, strain, sex, year, etc.
 •	How many birds or old birds there are in the loft
 •	Up to three generations pedigree of a specific pigeon.
