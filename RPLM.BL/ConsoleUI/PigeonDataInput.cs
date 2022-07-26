@@ -10,54 +10,63 @@ using RPLM.BL.Models;
 
 namespace RPLM.BL.ConsoleUI
 {
-    public class PigeonDataInput : Pigeon
+    public class PigeonDataInput
     {
+        private Pigeon pigeon;
         //Variables from band information
-        string bandOrganization;
-        string bandYear;
-        string bandClubCode;
-        string bandSerialNumber;
+        private string bandOrganization;
+        private string bandYear;
+        private string bandClubCode;
+        private string bandSerialNumber;
 
-        string pigeonColor;
-        string pigeonSex;
-        DateTime? pigeonHatchDate;
-        string pigeonOrigen;
-        string pigeonStrain;
-        string pigeonStatus;
-        string pigeonSireId;
-        string pigeonDamId;
+        private string pigeonColor;
+        private string pigeonSex;
+        private DateTime? pigeonHatchDate;
+        private string pigeonOrigen;
+        private string pigeonStrain;
+        private string pigeonStatus;
+        private string pigeonSireId;
+        private string pigeonDamId;
 
         public PigeonDataInput()
         {
+            pigeon = new Pigeon();
+        }
+
+        public Pigeon GetPigeonDataInput()
+        {
+            
             GetBandInformation();
-            BandOrganization = bandOrganization;
-            BandYear = bandYear;
-            BandClubCode = bandClubCode;
-            BandSerialNumber = bandSerialNumber;
+            pigeon.BandOrganization = bandOrganization;
+            pigeon.BandYear = bandYear;
+            pigeon.BandClubCode = bandClubCode;
+            pigeon.BandSerialNumber = bandSerialNumber;
 
             GetPigeonColor();
-            Color = pigeonColor;
+            pigeon.Color = pigeonColor;
 
             GetPigeonSex();
-            Sex = pigeonSex;
+            pigeon.Sex = pigeonSex;
 
             GetHatchDate();
-            HatchDate = pigeonHatchDate;
+            pigeon.HatchDate = pigeonHatchDate;
 
             GetOrigin();
-            Origin = pigeonOrigen;
+            pigeon.Origin = pigeonOrigen;
 
             GetStrain();
-            Strain = pigeonStrain;
+            pigeon.Strain = pigeonStrain;
 
             GetStatus();
-            Status = pigeonStatus;
+            pigeon.Status = pigeonStatus;
 
             GetSireAndDamBandId();
-            SireBandId = pigeonSireId;
-            DamBandId = pigeonDamId;
+            pigeon.SireBandId = pigeonSireId;
+            pigeon.DamBandId = pigeonDamId;
 
+            return pigeon;
         }
+
         private void GetBandInformation()
         {
             int cursorLeft = 0;
@@ -65,11 +74,6 @@ namespace RPLM.BL.ConsoleUI
 
             bool correctBandInformation = false;
             bool rigthInput;
-
-
-            
-
-            var band = new BandInformation();
 
             string bandId;
 
@@ -109,7 +113,7 @@ namespace RPLM.BL.ConsoleUI
                 } while (!rigthInput);
 
                 bandOrganization = bandOrganization.Replace(" ", string.Empty).ToUpper();
-                band.BandOrganization = bandOrganization;
+                pigeon.BandOrganization = bandOrganization;
 
                 //Year Console Input
 
@@ -131,7 +135,7 @@ namespace RPLM.BL.ConsoleUI
 
                 } while (!rigthInput);
 
-                band.BandYear = bandYear;
+                pigeon.BandYear = bandYear;
 
                 //Pigeon's club Console Input
 
@@ -153,7 +157,7 @@ namespace RPLM.BL.ConsoleUI
                 } while (!rigthInput);
 
                 bandClubCode = bandClubCode.Replace(" ", string.Empty).ToUpper();
-                band.BandClubCode = bandClubCode;
+                pigeon.BandClubCode = bandClubCode;
 
 
                 bandClubCode = bandClubCode.Replace(" ", string.Empty).ToUpper();
@@ -177,10 +181,10 @@ namespace RPLM.BL.ConsoleUI
                     }
 
                 } while (!rigthInput);
-                band.BandSerialNumber = bandSerialNumber;
 
+                pigeon.BandSerialNumber = bandSerialNumber;
                 bandId = string.Concat(bandOrganization, bandYear, bandClubCode, bandSerialNumber);
-
+                
                 Console.Write($"Does the pigeon's band you entered reads {bandId}? (Y/N) ");
 
                 correctBandInformation = InputValidator.YesOrNotChoice("Correct (Y/N):") == 'Y' ? true : false;

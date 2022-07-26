@@ -1,4 +1,5 @@
 ﻿using RPLM.BL.ConsoleUI;
+using RPLM.BL.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,9 @@ namespace RPLM.BL
     {
         static void MainMenu()
         {
+            // CARGAR INFORMACION QUE TENGO GUARDADA CON LOS REGISTROS DE PIGEONS
+            PigeonDataHelper.LoadData();
+
             CleanUp();
             Console.SetWindowSize(120, 45);
 

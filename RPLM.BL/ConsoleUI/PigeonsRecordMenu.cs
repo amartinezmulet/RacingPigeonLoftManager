@@ -1,4 +1,5 @@
 ﻿using RPLM.BL.ConsoleUI;
+using RPLM.BL.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -57,37 +58,52 @@ namespace RPLM.BL
                     //Pigeon record
                     case 1:
                         CleanUp();
-                        var pigeon = new PigeonDataInput();
-                        CleanUp();
-                        Console.WriteLine($"The Band Id id {pigeon.BandId}");
                         
-                        Console.WriteLine($"The pigeon's color is {pigeon.Color}");
-                        
-                        Console.WriteLine($"The pigeon's sex is {pigeon.Sex}");
+                        var pigeonDataInput = new PigeonDataInput();
+                        Pigeon newPigeon = pigeonDataInput.GetPigeonDataInput();
 
-                        var text = (pigeon.HatchDate == null) ? "Unknown" : pigeon.HatchDate.ToString();
+                        CleanUp();
+                        Console.WriteLine($"The Band Id id {newPigeon.BandId}");
+                        
+                        Console.WriteLine($"The pigeon's color is {newPigeon.Color}");
+                        
+                        Console.WriteLine($"The pigeon's sex is {newPigeon.Sex}");
+
+                        var text = (newPigeon.HatchDate == null) ? "Unknown" : newPigeon.HatchDate.ToString();
 
                         Console.WriteLine($"The pigeon's hatch date es is {text}");
 
-                        Console.WriteLine($"The pigeon's origin is {pigeon.Origin}");
+                        Console.WriteLine($"The pigeon's origin is {newPigeon.Origin}");
 
-                        Console.WriteLine($"The pigeon's strain is {pigeon.Strain}");
+                        Console.WriteLine($"The pigeon's strain is {newPigeon.Strain}");
 
-                        Console.WriteLine($"The pigeon's status is {pigeon.Status}");
+                        Console.WriteLine($"The pigeon's status is {newPigeon.Status}");
                         
-                        Console.WriteLine($"The Sire Band Id is {pigeon.SireBandId}");
-                        Console.WriteLine($"The Dam Band Id is {pigeon.DamBandId}");
+                        Console.WriteLine($"The Sire Band Id is {newPigeon.SireBandId}");
+                        Console.WriteLine($"The Dam Band Id is {newPigeon.DamBandId}");
 
 
-                        Console.ReadLine();
-                        
+                        Console.ReadLine(); //Would you like to save the changes Y/N
+                        PigeonDataHelper.AddPigeon(newPigeon);
+                        PigeonDataHelper.Save();
 
-                        
 
                         break;
                     case 2:
                         Console.WriteLine("Delete Pigeon");
                         Console.ReadLine();
+                        if (PigeonDataHelper.ExistPigeon("bandid"))
+                        {
+                            PigeonDataHelper.Remove("bandid here");
+                            PigeonDataHelper.Save();
+                        }
+                        else
+                        {
+                            Console.WriteLine("Pigeon does not exist.");
+                        }
+                        
+                        
+
                         break;
                     case 3:
                         Console.WriteLine("Find a Pigeon");

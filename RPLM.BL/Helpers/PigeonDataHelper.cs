@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,11 +34,49 @@ namespace RPLM.BL.Helpers
             return null;
         }
 
-        public static void Save()
+        public static bool ExistPigeon(string bandId)
         {
-            //TODO Save to Jason File
+            return Pigeons.ContainsKey(bandId);
         }
 
-        // Load pigeon data
+        public static void Remove(string bandId)
+        {
+            if (Pigeons.ContainsKey(bandId))
+            {
+                Pigeons.Remove(bandId);
+            }
+        }
+
+        public static void Save()
+        {
+            var serializedObject = Newtonsoft.Json.JsonConvert.SerializeObject(Pigeons.Values.ToList(), Newtonsoft.Json.Formatting.Indented);
+
+            //Save to file
+            string fileName = "PigeonDB.json";
+            string filePath = Path.Combine(Environment.CurrentDirectory, fileName);
+
+            using (StreamWriter sw = new StreamWriter(filePath))
+            {
+                sw.WriteLine(serializedObject);
+            }
+        }
+
+        public static void LoadData()
+        {
+            string content = null;
+            string fileName = "PigeonDB.json";
+            string filePath = Path.Combine(Environment.CurrentDirectory, fileName);
+
+            if (File.Exists(filePath))
+            {
+                using (StreamReader sr = new StreamReader(filePath))
+                {
+                    content = sr.ReadToEnd();
+                }
+
+                List<Pigeon> pigeon = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Pigeon>>(content);
+                Pigeons = pigeon.ToDictionary(it => it.BandId);
+            }
+        }
     }
 }
