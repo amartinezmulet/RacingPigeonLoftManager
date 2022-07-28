@@ -14,7 +14,7 @@ namespace RPLM.BL
         {
             bool exitApplication = false;
             string bandNumber;
-            
+
             while (!exitApplication)
             {
                 int userChoice;
@@ -35,12 +35,12 @@ namespace RPLM.BL
                     Console.WriteLine(menuHeader);
                     Console.WriteLine("├" + new string('─', menuHeader.Length - 2) + "┤");
 
-                    Console.WriteLine("│1. Find a Pigeon   4. Born in Loft      10. In Loft          │");
-                    Console.WriteLine("│2. Add Pigeon      5. Purchased         11. By Color         │");
-                    Console.WriteLine("│3. Delete Pigeon   6. Received as Gift  12. By Strain        │");
-                    Console.WriteLine("│                   7. Given away        13. By Sex           │");
-                    Console.WriteLine("│                   8. Lost              14. By Year          │");
-                    Console.WriteLine("│                   9. Deceased           0. Back to Main menu│");
+                    Console.WriteLine("│1. Find a Pigeon   5. Born in Loft      11. In Loft          │");
+                    Console.WriteLine("│2. Add a Pigeon    6. Purchased         12. By Color         │");
+                    Console.WriteLine("│3. Update a Pigeon 7. Received as Gift  13. By Strain        │");
+                    Console.WriteLine("│4. Delete a Pigeon 8. Given away        14. By Sex           │");
+                    Console.WriteLine("│                   9. Lost              15. By Year          │");
+                    Console.WriteLine("│                  10. Deceased           0. Back to Main menu│");
                     Console.WriteLine("└" + new string('─', menuHeader.Length - 2) + "┘");
 
                     Console.ResetColor();
@@ -63,7 +63,7 @@ namespace RPLM.BL
                     
                     //Pigeon record
                     
-                    case 1:
+                    case 1: // Finds a pigeon by Band Id
                         CleanUp();
                         Console.Title = "Find a Pigeon";
                         
@@ -95,7 +95,7 @@ namespace RPLM.BL
 
                         break;
 
-                    case 2:
+                    case 2: //Add a new Pigeon
                         CleanUp();
                         
                         var pigeonDataInput = new Input();
@@ -116,7 +116,12 @@ namespace RPLM.BL
                         }
 
                         break;
-                    case 3:
+
+                    case 3://TODO: Implement Edit or Update Pigeon Record
+
+                        break;
+
+                    case 4://TODO: Delete a pigeon
                         Console.Title = "Delete a Pigeon";
 
                         Display.WriteColorString("Band numbers are in a series of letters & numbers as shown below.", 1, 1, ConsoleColor.Black, ConsoleColor.White);
@@ -154,57 +159,131 @@ namespace RPLM.BL
                     
 
                     //Display Pigeons
-                    case 4:
-                        Console.WriteLine("Born in Loft");
+                    case 5://Display pigeons Born in Loft
+                        CleanUp();
+                        var pigeonsBornInLoft = PigeonDataHelper.Pigeons.Values.Where(x => ((x.Status == "Breeding")
+                                                                                || (x.Status == "Racing")
+                                                                                || (x.Status == "Squeaker")
+                                                                                || (x.Status == "Standby"))
+                                                                                && (x.Origin == "Bred")).ToList();
+
+                        Display.Pigeons(pigeonsBornInLoft);
                         Console.ReadLine();
                         break;
-                    case 5:
-                        Console.WriteLine("Purchased");
+
+                    case 6://Display purchased pigeons
+                        CleanUp();
+                        var pigeonsPurchased = PigeonDataHelper.Pigeons.Values.Where(x => ((x.Status == "Breeding")
+                                                                                        || (x.Status == "Racing")
+                                                                                        || (x.Status == "Squeaker")
+                                                                                        || (x.Status == "Standby"))
+                                                                                        && (x.Origin == "Purchased")).ToList();
+
+                        Display.Pigeons(pigeonsPurchased);
                         Console.ReadLine();
                         break;
-                    case 6:
-                        Console.WriteLine("Received as Gift");
+
+                    case 7://Display pigeons received as gift
+                        CleanUp();
+                        var pigeonsReceivedAsGift = PigeonDataHelper.Pigeons.Values.Where(x => ((x.Status == "Breeding")
+                                                                                      || (x.Status == "Racing")
+                                                                                      || (x.Status == "Squeaker")
+                                                                                      || (x.Status == "Standby"))
+                                                                                      && (x.Origin == "Gift")).ToList();
+
+                        Display.Pigeons(pigeonsReceivedAsGift);
                         Console.ReadLine();
                         break;
-                    case 7:
-                        Console.WriteLine("Given away");
+
+                    case 8://Display pigeons given away
+                        CleanUp();
+                        var pigeonsGivenAway = PigeonDataHelper.Pigeons.Values.Where(x => x.Status == "Gifted").ToList();
+                        Display.Pigeons(pigeonsGivenAway);
                         Console.ReadLine();
                         break;
-                    case 8:
-                        Console.WriteLine("Lost");
+
+                    case 9://Display pigeons lost
+                        CleanUp();
+                        var pigeonsLost = PigeonDataHelper.Pigeons.Values.Where(x => x.Status == "Lost").ToList();
+                        Display.Pigeons(pigeonsLost);
+
                         Console.ReadLine();
                         break;
-                    case 9:
-                        Console.WriteLine("Deceased");
-                        Console.ReadLine();
+
+                    case 10://Display pigeons Dead
+                        CleanUp();
+                        var pigeonsDead = PigeonDataHelper.Pigeons.Values.Where(x => x.Status == "Dead").ToList();
+                        Display.Pigeons(pigeonsDead);
                         break;
+
                     //List of all Pigeons
-                    case 10:
-                        Console.WriteLine("In Loft");
+                    case 11://Display pigeons In Loft
+                        CleanUp();
+                        var pigeonsInLoft = PigeonDataHelper.Pigeons.Values.Where(x => (x.Status == "Breeding")
+                                                                                      || (x.Status == "Racing")
+                                                                                      || (x.Status == "Squeaker")
+                                                                                      || (x.Status == "Standby")).ToList();
+                        Display.Pigeons(pigeonsInLoft);
                         Console.ReadLine();
                         break;
-                    case 11:
-                        Console.WriteLine("By Color");
+
+                    case 12://Display pigeons Group by color
+                        CleanUp();
+                        // Group pigeons by color
+                        var pigeonsGroupByColor = PigeonDataHelper.Pigeons.Values.OrderBy(x => x.BandId).Where(x => (x.Status == "Breeding")
+                                                                                      || (x.Status == "Racing")
+                                                                                      || (x.Status == "Squeaker")
+                                                                                      || (x.Status == "Standby"))
+                                                                                 .GroupBy(x => x.Color);
+
+                        //Display results
+                        Display.PigeonsGroupBy("Pigeon color",pigeonsGroupByColor);
                         Console.ReadLine();
                         break;
-                    case 12:
-                        Console.WriteLine("By Strain");
+
+                    case 13:// Group pigeons in loft by strain
+                        CleanUp();
+                        var pigeonsGroupByStrain = PigeonDataHelper.Pigeons.Values.OrderBy(x => x.BandId).Where(x => (x.Status == "Breeding")
+                                                                                      || (x.Status == "Racing")
+                                                                                      || (x.Status == "Squeaker")
+                                                                                      || (x.Status == "Standby"))
+                                                                                 .GroupBy(x => x.Strain);
+
+                        Display.PigeonsGroupBy("Pigeon strain", pigeonsGroupByStrain);
                         Console.ReadLine();
                         break;
-                    case 13:
-                        Console.WriteLine("By Sex");
+
+                    case 14://Group pigeons by sex
+                        CleanUp();
+                        var pigeonsGroupBySex = PigeonDataHelper.Pigeons.Values.OrderBy(x => x.BandId).Where(x => (x.Status == "Breeding")
+                                                                                                   || (x.Status == "Racing")
+                                                                                                   || (x.Status == "Squeaker")
+                                                                                                   || (x.Status == "Standby"))
+                                                                                              .GroupBy(x => x.Sex);
+
+                        Display.PigeonsGroupBy("Pigeon sex", pigeonsGroupBySex);
+                        Console.ReadLine();
                         Console.ReadLine();
                         break;
-                    case 14:
-                        Console.WriteLine("By Year");
+
+                    case 15:// Group pigeons by sex
+                        CleanUp();
+                        var pigeonsGroupByBandYear = PigeonDataHelper.Pigeons.Values.OrderBy(x => x.BandId).Where(x => (x.Status == "Breeding")
+                                                                                                   || (x.Status == "Racing")
+                                                                                                   || (x.Status == "Squeaker")
+                                                                                                   || (x.Status == "Standby"))
+                                                                                              .GroupBy(x => x.BandYear);
+
+                        Display.PigeonsGroupBy("Pigeon year", pigeonsGroupByBandYear);
                         Console.ReadLine();
                         break;
+
                     case 0:
                         exitApplication = true;
                         break;
                     default:
                         Display.TypeWrite("Not a choice, Please try again!!");
-                        System.Threading.Thread.Sleep(500);
+                        System.Threading.Thread.Sleep(300);
                         break;
                 }
             }

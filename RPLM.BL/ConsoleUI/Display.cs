@@ -10,11 +10,83 @@ namespace RPLM.BL.ConsoleUI
 {
     public static class Display
     {
+
+        public static void PigeonsGroupBy(string sortBy, IEnumerable<IGrouping<string,Pigeon>> pigeonsGroupedBy)
+        {
+            string[] titles = { "BandId", "Color", "Sex", "Origin", "Strain", "Status", "HatchDate", "SireBandId", "DamBandId" };
+
+            foreach (var GroupKey in pigeonsGroupedBy)
+            {
+                Console.Write($"\r\n{sortBy}: ");
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine(GroupKey.Key);
+                
+
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine(new String('─', 112));
+                Console.WriteLine($"{titles[0],-14}{titles[1],-17}{titles[2],-8}{titles[3],-10}{titles[4],-15}{titles[5],-9}{titles[6],-11}{titles[7],-15}{titles[8],-15}");
+                Console.WriteLine(new String('─', 112));
+                Console.ResetColor();
+
+                foreach (var pigeon in GroupKey)
+                {
+                    string strHatchDate;
+                    if (pigeon.HatchDate != null)
+                    {
+                        strHatchDate = ((DateTime)pigeon.HatchDate).ToShortDateString();
+                    }
+                    else
+                    {
+                        strHatchDate = "unknown";
+                    }
+                    //Console.WriteLine($"");
+                    Console.WriteLine($"{pigeon.BandId,-14}{pigeon.Color,-17}{pigeon.Sex,-8}{pigeon.Origin,-10}{pigeon.Strain,-15}{pigeon.Status,-9}{strHatchDate,-11}{pigeon.SireBandId,-15}{pigeon.DamBandId,-15}");
+
+                }
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine(new String('─', 112));
+                Console.ResetColor();
+
+            }
+        }
+
+        public static void Pigeons(List<Pigeon> PigeonList)
+        {
+            var pigeonsSortedByBandId = PigeonList.OrderBy(x => x.BandId);
+
+            string[] titles = { "BandId", "Color", "Sex", "Origin", "Strain", "Status", "HatchDate", "SireBandId", "DamBandId" };
+
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine(new String('─', 112));
+            Console.WriteLine($"{titles[0],-14}{titles[1],-17}{titles[2],-8}{titles[3],-10}{titles[4],-15}{titles[5],-9}{titles[6],-11}{titles[7],-15}{titles[8],-15}");
+            Console.WriteLine(new String('─', 112));
+            Console.ResetColor();
+            foreach (var pigeon in pigeonsSortedByBandId)
+            {
+                string strHatchDate;
+                if (pigeon.HatchDate != null)
+                {
+                    strHatchDate = ((DateTime)pigeon.HatchDate).ToShortDateString();
+                }
+                else
+                {
+                    strHatchDate = "unknown";
+                }
+                //Console.WriteLine($"");
+                Console.WriteLine($"{pigeon.BandId,-14}{pigeon.Color,-17}{pigeon.Sex,-8}{pigeon.Origin,-10}{pigeon.Strain,-15}{pigeon.Status,-9}{strHatchDate,-11}{pigeon.SireBandId,-15}{pigeon.DamBandId,-15}");
+
+
+            }
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine(new String('─', 112));
+            Console.ResetColor();
+        }
         public static void PigeonInventory(int uColumn, int uRow, int lColumn, int lRow, ConsoleColor bckgrnd, ConsoleColor frgrnd)
         {
             Display.SetColors(bckgrnd, frgrnd);
             
             //Totals of pigeons in loft
+
             Draw.Container(uColumn+15, uRow, 15, 3, "Pigeons in Loft", bckgrnd, frgrnd);
             Console.SetCursorPosition(uColumn+23, uRow+2);
 

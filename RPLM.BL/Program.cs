@@ -23,13 +23,6 @@ namespace RPLM.BL
 
             //PigeonDataHelper.LoadData();
 
-            //Display.PigeonInventory(0, 0, 50, 10);
-
-
-
-
-
-
             Console.ReadLine();
         }
 

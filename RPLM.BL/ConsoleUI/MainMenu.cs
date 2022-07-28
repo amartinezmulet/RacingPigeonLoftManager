@@ -16,7 +16,7 @@ namespace RPLM.BL
             
 
             CleanUp();
-            Console.SetWindowSize(120, 45);
+            //Console.SetWindowSize(135, 45);
 
             
 
@@ -87,7 +87,7 @@ namespace RPLM.BL
                         break;
                     default:
                         Display.TypeWrite("Not a choice, Please try again!!");
-                        //System.Threading.Thread.Sleep(500);
+                        System.Threading.Thread.Sleep(300);
                         //Console.ReadLine();
                         break;
                 }
