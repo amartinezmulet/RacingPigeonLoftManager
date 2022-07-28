@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using RPLM.BL.ConsoleUI;
+using RPLM.BL.DrawingTools;
+using RPLM.BL.Helpers;
+using RPLM.BL.Models;
+
+
 
 namespace RPLM.BL
 {
@@ -12,14 +17,23 @@ namespace RPLM.BL
         {
             Console.Clear();
             Console.ResetColor();
+            Console.Title = "Racing Pigeon Loft Manager";
 
-           MainMenu();
+            MainMenu();
 
-            
+            //PigeonDataHelper.LoadData();
+
+            //Display.PigeonInventory(0, 0, 50, 10);
 
 
+
+
+
+
+            Console.ReadLine();
         }
 
+        
 
         
 

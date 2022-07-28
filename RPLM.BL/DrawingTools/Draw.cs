@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RPLM.BL.ConsoleUI;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -92,10 +93,10 @@ namespace RPLM.BL.DrawingTools
             int lcol = uppercolumn + maxLength + 3;
             int lrow = upperrow + arraySize + 1;
             Box(uppercolumn, upperrow, lcol, lrow, background, foreground, true);
-            WriteColorString(" " + stringArray[0] + new string(' ', rightSpaces[0]), uppercolumn + 1, upperrow + 1, foreground, background);
+            Display.WriteColorString(" " + stringArray[0] + new string(' ', rightSpaces[0]), uppercolumn + 1, upperrow + 1, foreground, background);
             for (int index = 2; index <= arraySize; index++)
             {
-                WriteColorString(stringArray[index - 1], uppercolumn + 2, upperrow + index, background, foreground);
+                Display.WriteColorString(stringArray[index - 1], uppercolumn + 2, upperrow + index, background, foreground);
             }
 
             ConsoleKeyInfo cki;
@@ -112,7 +113,7 @@ namespace RPLM.BL.DrawingTools
                 }
                 else if (cki.Key == ConsoleKey.DownArrow)
                 {
-                    WriteColorString(" " + stringArray[choice - 1] + new string(' ', rightSpaces[choice - 1]), uppercolumn + 1, upperrow + choice, background, foreground);
+                    Display.WriteColorString(" " + stringArray[choice - 1] + new string(' ', rightSpaces[choice - 1]), uppercolumn + 1, upperrow + choice, background, foreground);
                     if (choice < arraySize)
                     {
                         choice++;
@@ -121,12 +122,12 @@ namespace RPLM.BL.DrawingTools
                     {
                         choice = 1;
                     }
-                    WriteColorString(" " + stringArray[choice - 1] + new string(' ', rightSpaces[choice - 1]), uppercolumn + 1, upperrow + choice, foreground, background);
+                    Display.WriteColorString(" " + stringArray[choice - 1] + new string(' ', rightSpaces[choice - 1]), uppercolumn + 1, upperrow + choice, foreground, background);
 
                 }
                 else if (cki.Key == ConsoleKey.UpArrow)
                 {
-                    WriteColorString(" " + stringArray[choice - 1] + new string(' ', rightSpaces[choice - 1]), uppercolumn + 1, upperrow + choice, background, foreground);
+                    Display.WriteColorString(" " + stringArray[choice - 1] + new string(' ', rightSpaces[choice - 1]), uppercolumn + 1, upperrow + choice, background, foreground);
                     if (choice > 1)
                     {
                         choice--;
@@ -135,7 +136,7 @@ namespace RPLM.BL.DrawingTools
                     {
                         choice = arraySize;
                     }
-                    WriteColorString(" " + stringArray[choice - 1] + new string(' ', rightSpaces[choice - 1]), uppercolumn + 1, upperrow + choice, foreground, background);
+                    Display.WriteColorString(" " + stringArray[choice - 1] + new string(' ', rightSpaces[choice - 1]), uppercolumn + 1, upperrow + choice, foreground, background);
                 }
             }
         }
@@ -152,7 +153,7 @@ namespace RPLM.BL.DrawingTools
         public static void Box(int ucol, int urow, int lcol, int lrow, ConsoleColor back, ConsoleColor fore, bool fill)
         {
             string fillLine = fill ? new string(' ', lcol - ucol - 1) : "";
-            SetColors(back, fore);
+            Display.SetColors(back, fore);
             // draw top edge
             Console.SetCursorPosition(ucol, urow);
             Console.Write(LeftTopCorner);
@@ -198,24 +199,14 @@ namespace RPLM.BL.DrawingTools
         /// <param name="row">The row.</param>
         /// <param name="background">The background.</param>
         /// <param name="foreground">The foreground.</param>
-        public static void WriteColorString(string s, int col, int row, ConsoleColor background, ConsoleColor foreground)
-        {
-            SetColors(background, foreground);
-            // write string
-            Console.SetCursorPosition(col, row);
-            Console.Write(s);
-        }
+        
 
         /// <summary>
         /// Sets the background and foreground colors.
         /// </summary>
         /// <param name="background">The background.</param>
         /// <param name="foreground">The foreground.</param>
-        public static void SetColors(ConsoleColor background, ConsoleColor foreground)
-        {
-            Console.BackgroundColor = background;
-            Console.ForegroundColor = foreground;
-        }
+        
 
         
         //***********************************************************************************************************************

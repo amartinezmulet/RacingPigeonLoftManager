@@ -288,7 +288,7 @@ namespace RPLM.BL.ConsoleUI
 
                 pigeonSex = sex[sexChoice - 1];
 
-                Console.Write($"You chose \u0022{pigeonSex}\u0022");
+                Console.Write($"You chose \u0022{pigeonSex}\u0022 ");
                 correctSex = InputValidator.YesOrNotChoice("Correct (Y/N)?: ") == 'Y';
 
 
@@ -465,7 +465,7 @@ namespace RPLM.BL.ConsoleUI
             bool correctSireAndDamBandInformation = false;
             bool rigthInput;
 
-            string bandId;
+            //string bandId;
 
             while (!correctSireAndDamBandInformation)
             {
