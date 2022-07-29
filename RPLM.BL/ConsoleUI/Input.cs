@@ -336,7 +336,8 @@ namespace RPLM.BL.ConsoleUI
 
                 } while (!rigthInput);
                 DateTime date;
-                pigeonHatchDate = DateTime.TryParseExact(consoleInput, "MM/dd/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out date) ? date : null;
+                bool isSuccess = DateTime.TryParseExact(consoleInput, "MM/dd/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out date);
+                pigeonHatchDate = isSuccess ? date as DateTime? : null;
 
                 Console.Write($"\r\nIs the Hatch Date {pigeonHatchDate} ");
 
@@ -520,9 +521,6 @@ namespace RPLM.BL.ConsoleUI
                 Console.Write($"Is the pigeon's Sire and Dam band information you entered ");
 
                 correctSireAndDamBandInformation = InputValidator.YesOrNotChoice("Correct (Y/N)?: ") == 'Y';
-
-
-
             } // Exits if correctBandInformation = true
         }
 

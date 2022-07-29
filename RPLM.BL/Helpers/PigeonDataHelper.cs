@@ -16,7 +16,7 @@ namespace RPLM.BL.Helpers
             Pigeons.Add(pigeon.BandId, pigeon);
         }
 
-        public static void EditPigeon(string bandIdNumber, Pigeon pigeon)
+        public static void UpdatePigeon(string bandIdNumber, Pigeon pigeon)
         {
             if (Pigeons.ContainsKey(bandIdNumber))
             {

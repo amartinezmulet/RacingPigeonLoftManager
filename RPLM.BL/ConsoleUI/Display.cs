@@ -231,7 +231,7 @@ namespace RPLM.BL.ConsoleUI
             var width = message.Length + 2;
             Draw.Container(column, row, width, 3, "\u0020Message\u0020", ConsoleColor.Gray, ConsoleColor.Black);
             WriteColorString(message, column+1,row+1, ConsoleColor.Gray, ConsoleColor.DarkRed);
-            WriteColorString("Please hit enter to continue", column + 1, row + 2, ConsoleColor.Gray, ConsoleColor.Black);
+            //WriteColorString("Please hit enter to continue", column + 1, row + 2, ConsoleColor.Gray, ConsoleColor.Black);
             Console.ResetColor();
             Console.CursorVisible = true;
 

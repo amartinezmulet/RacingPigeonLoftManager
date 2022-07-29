@@ -89,7 +89,8 @@ namespace RPLM.BL.Helpers
         public static DateTime? GetHatchDate(string input)
         {
             DateTime date;
-            return DateTime.TryParseExact(input, "MM/dd/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out date) ? date : null;
+            bool isSuccess = DateTime.TryParseExact(input, "MM/dd/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out date);
+            return isSuccess ? date as DateTime? : null;
         }
 
 

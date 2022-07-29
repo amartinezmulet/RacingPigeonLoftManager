@@ -83,5 +83,57 @@ namespace RPLM.BL
         /// </value>
         public string DamBandId { get; set; }
 
+
+        public override bool Equals(Object obj)
+        {
+            if ((obj == null) || !this.GetType().Equals(obj.GetType()))
+            {
+                return false;
+            }
+            else
+            {
+                Pigeon p = (Pigeon)obj;
+                return (BandClubCode == p.BandClubCode) &&
+                        (BandOrganization == p.BandOrganization) &&
+                        (BandSerialNumber == p.BandSerialNumber) &&
+                        (BandYear == p.BandYear) &&
+                        (Color == p.Color) &&
+                        (DamBandId == p.DamBandId) &&
+                        (Origin == p.Origin) &&
+                        (Sex == p.Sex) &&
+                        (SireBandId == p.SireBandId) &&
+                        (Status == p.Status) &&
+                        (Strain == p.Strain);
+            }
+        }
+
+        public override int GetHashCode()
+        {
+            var result = BandClubCode.GetHashCode();
+            if (!string.IsNullOrWhiteSpace(BandOrganization))
+                result ^= BandOrganization.GetHashCode();
+            if (!string.IsNullOrWhiteSpace(BandOrganization))
+                result ^= BandSerialNumber.GetHashCode();
+            if (!string.IsNullOrWhiteSpace(BandSerialNumber))
+                result ^= BandYear.GetHashCode();
+            if (!string.IsNullOrWhiteSpace(BandYear))
+                result ^= Color.GetHashCode();
+            if (!string.IsNullOrWhiteSpace(DamBandId))
+                result ^= DamBandId.GetHashCode();
+            if (!string.IsNullOrWhiteSpace(Origin))
+                result ^= Origin.GetHashCode();
+            if (!string.IsNullOrWhiteSpace(Sex))
+                result ^= Sex.GetHashCode();
+            if (!string.IsNullOrWhiteSpace(SireBandId))
+                result ^= SireBandId.GetHashCode();
+            if (!string.IsNullOrWhiteSpace(Status))
+                result ^= Status.GetHashCode();
+            if (!string.IsNullOrWhiteSpace(DamBandId))
+                result ^= DamBandId.GetHashCode();
+            if (!string.IsNullOrWhiteSpace(Strain))
+                result ^= Strain.GetHashCode();
+
+            return result;
+        }
     }
 }
