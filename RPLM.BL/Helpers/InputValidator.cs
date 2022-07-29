@@ -103,7 +103,7 @@ namespace RPLM.BL.Helpers
         {
             Console.SetCursorPosition(cursorLeft, cursorTop);
             Console.Write("Wrong input, please try again");
-            Thread.Sleep(2000);
+            Thread.Sleep(800);
             Console.SetCursorPosition(cursorLeft, cursorTop);
             Console.Write(new string(' ', Console.WindowWidth - Console.CursorLeft));
             Console.SetCursorPosition(cursorLeft, cursorTop);

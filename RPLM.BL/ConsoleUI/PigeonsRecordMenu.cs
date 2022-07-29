@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace RPLM.BL
@@ -15,10 +16,14 @@ namespace RPLM.BL
         {
             bool exitApplication = false;
             string bandNumber="";
+            var inputBandNumber = "";
+            var exitFindAPigeon = true;
+
             while (!exitApplication)
             {
                 int userChoice;
                 bool validChoice;
+               
 
                 string menuHeader = "│Pigeon record     Display Pigeons       List of all Pigeons  │";
 
@@ -68,10 +73,10 @@ namespace RPLM.BL
 
                         CleanUp();
 
+                        Display.PigeonRecord(0, 0, 37, 17, newPigeon);
+
                         Console.CursorTop = 20;
                         Console.CursorLeft = 0;
-
-                        Display.PigeonRecord(0, 0, 37, 17, newPigeon);
 
                         var saveData = InputValidator.YesOrNotChoice("Would you like to save the above data (Y/N)?: ")=='Y' ? true : false;
                         if (saveData)
@@ -86,32 +91,29 @@ namespace RPLM.BL
                         CleanUp();
                         Console.Title = "Find a Pigeon";
 
-                        var exitFindAPigeon = true;
-
                         while (exitFindAPigeon)
                         {
-                            bandNumber = ShowPigeonRecord();
+                            bandNumber = ShowPigeonRecord(true);
 
                             exitFindAPigeon = InputValidator.YesOrNotChoice("\r\n\r\n\r\n\r\nDo you want to search again (Y/N): ") == 'Y' ? true : false;
 
                             CleanUp();
                         }
 
-                        if (String.IsNullOrEmpty(bandNumber))
-                            Console.WriteLine($"No buscastes ningun pigeon");
-                        else
-                            Console.WriteLine($"The pigeon you were searching for was {bandNumber}");
-
-                        Console.ReadLine();
-
-                        break;
+                         break;
 
                     case 3://TODO: Implement Edit or Update Pigeon Record
-
                         CleanUp();
-                        Display.WriteColorString("Please enter the pigeon Band Number: ", 1, 0, ConsoleColor.Black, ConsoleColor.White);
-                        var inputBandNumber = Console.ReadLine();
+                        inputBandNumber="";
 
+                        inputBandNumber = ShowPigeonRecord(false);
+
+                        if (String.IsNullOrEmpty(inputBandNumber))
+                        {
+                            Display.WriteColorString("Please hit enter to try again", 1, 6,ConsoleColor.Black, ConsoleColor.White);
+                            Console.ReadLine();
+                            break;
+                        }
                         
                         Pigeon pigeon = PigeonDataHelper.GetPigeonById(inputBandNumber);
                         string option;
@@ -135,48 +137,64 @@ namespace RPLM.BL
                             PigeonDataHelper.UpdatePigeon(inputBandNumber, pigeon);
                             PigeonDataHelper.Save();
                         }
-                        
-
-
-
-
 
                         break;
 
                     case 4://TODO: Implement Delete a Pigeon Record
 
                         CleanUp();
-
-                        CleanUp();
                         Console.Title = "Delete a Pigeon";
 
-                        var exitDeletePigeon = true;
-                        var deletePigeon = false;
+                        Console.CursorTop = 20;
+                        Console.CursorLeft = 0;
+                        CleanUp();
+                        inputBandNumber = "";
 
-                        while (exitDeletePigeon)
+                        inputBandNumber = ShowPigeonRecord(true);
+
+                        if (String.IsNullOrEmpty(inputBandNumber))
                         {
-                            bandNumber = ShowPigeonRecord();
-
-                            deletePigeon = InputValidator.YesOrNotChoice("\r\n\r\n\r\n\r\nAre you sure you want delete this pigeon (Y/N): ") == 'Y' ? true : false;
-                            
-                            if (deletePigeon)
-                            {
-                                PigeonDataHelper.Remove(bandNumber);
-                                PigeonDataHelper.Save();
-                                Console.WriteLine("\r\nThe pigeon was deleted from your records");
-                            }
-
-                            exitDeletePigeon = InputValidator.YesOrNotChoice("\r\n\r\n\r\n\r\nDo you want delete another pigeon (Y/N): ") == 'Y' ? true : false;
-
-                            CleanUp();
+                            Display.WriteColorString("Please hit enter to try again", 1, 6, ConsoleColor.Black, ConsoleColor.White);
+                            Console.ReadLine();
+                            break;
                         }
 
-                        if (String.IsNullOrEmpty(bandNumber))
-                            Console.WriteLine($"No buscastes ningun pigeon");
-                        else
-                            Console.WriteLine($"The pigeon you were searching for was {bandNumber}");
+                        bool deletePigeon = InputValidator.YesOrNotChoice("\r\n\r\n\r\n\r\nAre you sure you want delete this pigeon (Y/N): ") == 'Y' ? true : false;
+                        if (true)
+                        {
+                            PigeonDataHelper.Remove(inputBandNumber);
+                            PigeonDataHelper.Save();
+                            Console.WriteLine("\r\nPigeon deleted");
+                            Thread.Sleep(1000);
+                        }
 
-                        Console.ReadLine();
+                        //var exitDeletePigeon = true;
+                        //var deletePigeon = false;
+
+                        //while (exitDeletePigeon)
+                        //{
+                        //    bandNumber = ShowPigeonRecord(true);
+
+                        //    deletePigeon = InputValidator.YesOrNotChoice("\r\n\r\n\r\n\r\nAre you sure you want delete this pigeon (Y/N): ") == 'Y' ? true : false;
+
+                        //    if (deletePigeon)
+                        //    {
+                        //        PigeonDataHelper.Remove(bandNumber);
+                        //        PigeonDataHelper.Save();
+                        //        Console.WriteLine("\r\nThe pigeon was deleted from your records");
+                        //    }
+
+                        //    exitDeletePigeon = InputValidator.YesOrNotChoice("\r\n\r\n\r\n\r\nDo you want delete another pigeon (Y/N): ") == 'Y' ? true : false;
+
+                        //CleanUp();
+                        //}
+
+                        //if (String.IsNullOrEmpty(bandNumber))
+                        //    Console.WriteLine($"No buscastes ningun pigeon");
+                        //else
+                        //    Console.WriteLine($"The pigeon you were searching for was {bandNumber}");
+
+                        //Console.ReadLine();
                         break;
 
 
@@ -313,6 +331,12 @@ namespace RPLM.BL
 
         private static void UpdatePigeonMenu(Pigeon pigeon, out bool exit)
         {
+            int cursorLeft = 0;
+            int cursorTop = 0;
+
+            //bool correctValue = false;
+            bool rigthInput;
+
             Display.WriteColorString($"1 -  Band organization: {pigeon.BandOrganization}", 1, 1, ConsoleColor.Black, ConsoleColor.White);
             Display.WriteColorString($"2 -  Band year: {pigeon.BandYear}", 1, 2, ConsoleColor.Black, ConsoleColor.White);
             Display.WriteColorString($"3 -  Band club code: {pigeon.BandClubCode}", 1, 3, ConsoleColor.Black, ConsoleColor.White);
@@ -338,42 +362,173 @@ namespace RPLM.BL
                 if (option != 13)
                 {
                     Console.WriteLine("Enter new value: ");
+
+                    cursorLeft = Console.CursorLeft;
+                    cursorTop = Console.CursorTop;
+
+
                     value = Console.ReadLine();
                 }
 
                 switch (option)
                 {
                     case 1:
+                        
+                        
+                        do
+                        {
+                            rigthInput = InputValidator.IsValidStrigWithNoNumbers(input: out value);
+
+                            if (!rigthInput)
+                            {
+                                InputValidator.WrongInputMsg(cursorLeft, cursorTop);
+                            }
+
+                        } while (!rigthInput);
+
                         pigeon.BandOrganization = value;
+
+
                         break;
                     case 2:
+
+                        do
+                        {
+                            rigthInput = InputValidator.IsValidYear(input: out value);
+
+                            if (!rigthInput)
+                            {
+                                InputValidator.WrongInputMsg(cursorLeft, cursorTop);
+                            }
+
+                        } while (!rigthInput);
+
                         pigeon.BandYear = value;
                         break;
                     case 3:
+
+                        do
+                        {
+                            rigthInput = InputValidator.IsValidStrigWithNoNumbers(input: out value);
+
+                            if (!rigthInput)
+                            {
+                                InputValidator.WrongInputMsg(cursorLeft, cursorTop);
+                            }
+
+                        } while (!rigthInput);
+
+
                         pigeon.BandClubCode = value;
                         break;
                     case 4:
+
+                        do
+                        {
+                            rigthInput = InputValidator.IsIntegerNumber(input: out value);
+
+                            if (!rigthInput)
+                            {
+                                InputValidator.WrongInputMsg(cursorLeft, cursorTop);
+                            }
+
+                        } while (!rigthInput);
+
                         pigeon.BandSerialNumber = value;
                         break;
                     case 5:
+
+                        do
+                        {
+                            rigthInput = InputValidator.IsValidStrigWithNoNumbers(input: out value);
+
+                            if (!rigthInput)
+                            {
+                                InputValidator.WrongInputMsg(cursorLeft, cursorTop);
+                            }
+
+                        } while (!rigthInput);
+
                         pigeon.Strain = value;
                         break;
                     case 6:
+
+                        do
+                        {
+                            rigthInput = InputValidator.IsValidStrigWithNoNumbers(input: out value);
+
+                            if (!rigthInput)
+                            {
+                                InputValidator.WrongInputMsg(cursorLeft, cursorTop);
+                            }
+
+                        } while (!rigthInput);
+
                         pigeon.Status = value;
                         break;
                     case 7:
+                        do
+                        {
+                            rigthInput = InputValidator.IsValidStrigWithNumbers(input: out value);
+
+                            if (!rigthInput)
+                            {
+                                InputValidator.WrongInputMsg(cursorLeft, cursorTop);
+                            }
+
+                        } while (!rigthInput);
                         pigeon.SireBandId = value;
                         break;
                     case 8:
+                        do
+                        {
+                            rigthInput = InputValidator.IsValidStrigWithNumbers(input: out value);
+
+                            if (!rigthInput)
+                            {
+                                InputValidator.WrongInputMsg(cursorLeft, cursorTop);
+                            }
+
+                        } while (!rigthInput);
                         pigeon.DamBandId = value;
                         break;
                     case 9:
+                        do
+                        {
+                            rigthInput = InputValidator.IsValidStrigWithNoNumbers(input: out value);
+
+                            if (!rigthInput)
+                            {
+                                InputValidator.WrongInputMsg(cursorLeft, cursorTop);
+                            }
+
+                        } while (!rigthInput);
                         pigeon.Color = value;
                         break;
                     case 10:
+                        do
+                        {
+                            rigthInput = InputValidator.IsValidStrigWithNoNumbers(input: out value);
+
+                            if (!rigthInput)
+                            {
+                                InputValidator.WrongInputMsg(cursorLeft, cursorTop);
+                            }
+
+                        } while (!rigthInput);
                         pigeon.Sex = value;
                         break;
                     case 11:
+                        do
+                        {
+                            rigthInput = InputValidator.IsValidStrigWithNoNumbers(input: out value);
+
+                            if (!rigthInput)
+                            {
+                                InputValidator.WrongInputMsg(cursorLeft, cursorTop);
+                            }
+
+                        } while (!rigthInput);
                         DateTime newDate;
                         bool isValid = DateTime.TryParse(value, out newDate);
                         if (!isValid)
@@ -386,6 +541,16 @@ namespace RPLM.BL
                         }
                         break;
                     case 12:
+                        do
+                        {
+                            rigthInput = InputValidator.IsValidStrigWithNoNumbers(input: out value);
+
+                            if (!rigthInput)
+                            {
+                                InputValidator.WrongInputMsg(cursorLeft, cursorTop);
+                            }
+
+                        } while (!rigthInput);
                         pigeon.Origin = value;
                         break;
                     case 13:
@@ -401,7 +566,7 @@ namespace RPLM.BL
             }
         }
 
-        private static string ShowPigeonRecord()
+        private static string ShowPigeonRecord(bool IsShown)
         {
             
             CleanUp();
@@ -420,17 +585,19 @@ namespace RPLM.BL
                 Console.CursorTop = 20;
                 Console.CursorLeft = 0;
 
-                Display.PigeonRecord(0, 0, 37, 17, PigeonDataHelper.GetPigeonById(inputBandNumber));
+                if(IsShown) Display.PigeonRecord(0, 0, 37, 17, PigeonDataHelper.GetPigeonById(inputBandNumber));
+
+                return inputBandNumber;
                 //Display.WriteColorString("Please hit enter to continue", 1, 19, ConsoleColor.Black, ConsoleColor.White);
             }
             else
             {
                 CleanUp();
-                Display.MessageBox("The pigeon you are looking for is not in your pigeon's record", 0, 0);
+                Display.MessageBox("The pigeon you are looking for is not in your pigeon's record", 1, 1);
 
             }
 
-            return inputBandNumber;
+            return null;
         }
     }
 }

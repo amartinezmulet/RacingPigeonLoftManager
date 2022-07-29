@@ -249,8 +249,8 @@ namespace RPLM.BL.ConsoleUI
 
                 int colorChoice = InputValidator.ChooseListBoxItem(colors, Console.CursorLeft, Console.CursorTop, ConsoleColor.Blue, ConsoleColor.White);
 
-                Console.CursorLeft = cursorLeft;
-                Console.CursorTop = cursorTop + 37;
+                Console.CursorLeft = cursorLeft+28;
+                Console.CursorTop = cursorTop + 36;
 
                 Console.ResetColor();
                 Console.CursorVisible = true;
@@ -283,7 +283,7 @@ namespace RPLM.BL.ConsoleUI
                 int sexChoice = InputValidator.ChooseListBoxItem(sex, Console.CursorLeft, Console.CursorTop, ConsoleColor.Blue, ConsoleColor.White);
 
                 Console.CursorLeft = cursorLeft;
-                Console.CursorTop = cursorTop + 37;
+                Console.CursorTop = cursorTop + 36;
 
                 Console.ResetColor();
                 Console.CursorVisible = true;
@@ -369,7 +369,7 @@ namespace RPLM.BL.ConsoleUI
                 int originChoice = InputValidator.ChooseListBoxItem(origin, Console.CursorLeft, Console.CursorTop, ConsoleColor.Blue, ConsoleColor.White);
 
                 Console.CursorLeft = cursorLeft;
-                Console.CursorTop = cursorTop + 37;
+                Console.CursorTop = cursorTop + 36;
 
                 Console.ResetColor();
                 Console.CursorVisible = true;
@@ -408,7 +408,7 @@ namespace RPLM.BL.ConsoleUI
                 int strainChoice = InputValidator.ChooseListBoxItem(strain, Console.CursorLeft, Console.CursorTop, ConsoleColor.Blue, ConsoleColor.White);
 
                 Console.CursorLeft = cursorLeft;
-                Console.CursorTop = cursorTop + 37;
+                Console.CursorTop = cursorTop + 32;
 
                 Console.ResetColor();
                 Console.CursorVisible = true;
@@ -444,7 +444,7 @@ namespace RPLM.BL.ConsoleUI
                 int statusChoice = InputValidator.ChooseListBoxItem(status, Console.CursorLeft, Console.CursorTop, ConsoleColor.Blue, ConsoleColor.White);
 
                 Console.CursorLeft = cursorLeft;
-                Console.CursorTop = cursorTop + 37;
+                Console.CursorTop = cursorTop + 36;
 
                 Console.ResetColor();
                 Console.CursorVisible = true;

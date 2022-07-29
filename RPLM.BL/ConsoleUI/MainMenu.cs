@@ -44,7 +44,6 @@ namespace RPLM.BL
 
                     Console.WriteLine("│1.Pigeons Record  │");
                     Console.WriteLine("│2.Inventory       │");
-                    Console.WriteLine("│3.Pedigree        │");
                     Console.WriteLine("│0.Exit application│\r");
                     Console.WriteLine("└" + new string('─', 18) + "┘");
 
@@ -55,7 +54,7 @@ namespace RPLM.BL
                     Console.SetCursorPosition(0, 8);
                     Display.TypeWrite("\r\nPlease choose one of\r\nthe above options:");
 
-                    validChoice = Int32.TryParse(Console.ReadLine(), out userChoice) || userChoice < 0 || userChoice > 3;
+                    validChoice = Int32.TryParse(Console.ReadLine(), out userChoice) || userChoice < 0 || userChoice > 2;
 
                     if (!validChoice)
                     {
@@ -76,10 +75,6 @@ namespace RPLM.BL
                         Console.ResetColor();
                         
                         Display.PigeonInventory(3, 3, 10, 5, ConsoleColor.Black, ConsoleColor.White);
-                        Console.ReadLine();
-                        break;
-                    case 3:
-                        Console.WriteLine("Pedigree - Option 3 was chosen");
                         Console.ReadLine();
                         break;
                     case 0:
