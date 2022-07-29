@@ -18,7 +18,7 @@ Project Goals
 14.	Have a list of all pigeons group by sex.
 15.	Have a list of all pigeons group by the band year.
 16.	Have a loft inventory
-##Code Louisville Requirements List applied to my project
+## Code Louisville Requirements List applied to my project
 ●	Implement a “master loop” console application where the user can repeatedly enter commands/perform actions, including choosing to exit the program
 ●	Create an additional class which inherits one or more properties from its parent
 ●	Create a dictionary or list, populate it with several values, retrieve at least one value, and use it in your program
